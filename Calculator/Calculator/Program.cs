@@ -6,8 +6,8 @@ namespace Calculator
     {
         static void Main(string[] args)
         {   //Zadeklaruj zmienne, a następnie zainicjuj do zera.
-            int num1 = 0;
-            int num2 = 0;
+            double num1 = 0;
+            double num2 = 0;
 
             //Wyświetl tytuł jako aplikację kalkulatora konsoli C #.
 
@@ -17,10 +17,10 @@ namespace Calculator
             //Poproś użytkownika o wpisanie liczb.
 
             Console.WriteLine("Wprowadz pierwszą liczbę i naciśnij ENTER");
-            num1 = Convert.ToInt32(Console.ReadLine());
+            num1 = Convert.ToDouble(Console.ReadLine());
 
             Console.WriteLine("Wprowadz drugą liczbę i naciśnij ENTER");
-            num2 = Convert.ToInt32(Console.ReadLine());
+            num2 = Convert.ToDouble(Console.ReadLine());
 
             //Wybierz opcje z listy
 
