@@ -45,6 +45,12 @@ namespace Calculator
                     Console.WriteLine($"Twoje równanie: {num1} * {num2} = "+(num1 * num2));
                     break;
                 case "d":
+                    // Wprowadz drógą liczbę inną niż 0
+                    while (num2 == 0)
+                    {
+                        Console.WriteLine("Liczba nie może być 0, wpisz inną liczbę:  ");
+                        num2 = Convert.ToInt32(Console.ReadLine());
+                    }
                     Console.WriteLine($"Twoje równanie: {num1} / {num2} = "+(num1/num2));
                     break;
             }
