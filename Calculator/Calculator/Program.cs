@@ -5,7 +5,82 @@ namespace Calculator
     class Program
     {
         static void Main(string[] args)
-        {   //Zadeklaruj zmienne, a następnie zainicjuj do zera.
+        {
+            //KalkulatorNiezabezpieczonyPrzedWpisaniemLitery();
+            bool endApp = false;
+            Console.WriteLine(" Kalkulator dla C#\r ");
+            Console.WriteLine("_________________\n");
+
+            while (!endApp)
+            {   // Deklaracja zmiennych
+                string numInput1 = " ";
+                string numInput2 = " ";
+                double result = 0;
+
+                // Wpisanie pierwszej liczby
+                Console.Write("Podaj pierwszą liczbę i potwierdz ENTER\n");
+                numInput1 = Console.ReadLine();
+
+                double cleanNum1 = 0;
+                while (!double.TryParse(numInput1, out cleanNum1))
+                {
+                    Console.WriteLine("To nie jest poprawna liczba. Wprowadz ponownie\n");
+                    numInput1 = Console.ReadLine();
+                }
+
+                // Wpisanie drugiej liczby
+                Console.Write("Podaj drugą liczbę i potwierdz ENTER\n");
+                numInput2 = Console.ReadLine();
+
+                double cleanNum2 = 0;
+                while (!double.TryParse(numInput2, out cleanNum2))
+                {
+                    Console.WriteLine("To nie jest poprawna liczba. Wprowadz ponownie\n");
+                    numInput2 = Console.ReadLine();
+                }
+
+                // Wybierz rodzaj operacji
+                Console.WriteLine("Wybierz rodzaj operacji:  ");
+                Console.WriteLine(" \ta  - dodawanie");
+                Console.WriteLine(" \ts  - odejmowanie");
+                Console.WriteLine(" \tm  - mnożenie");
+                Console.WriteLine(" \td  - dzielenie");
+                Console.Write("Twój wybór to:  ");
+
+                string op = Console.ReadLine();
+
+                try
+                {
+                    result = Calculator.Operacje(cleanNum1, cleanNum2, op);
+                    if (double.IsNaN(result))
+                    {
+                        Console.WriteLine("Ta operacja spowoduje błąd");
+                    }
+                    else
+                    {
+                        Console.WriteLine("Twój wynik: {0:0.##}", result );
+                    }
+                }
+                catch (Exception e)
+                {
+
+                    Console.WriteLine("Wystąpił wyjątek, szczegóły : " + e.Message );
+                }
+                Console.WriteLine("_________________");
+
+                Console.WriteLine("Nacijśnij n i ENTER aby zakończyć, lub inny klawisz żeby kontynuować: ");
+                if (Console.ReadLine() == "n") 
+                {
+                    endApp = true;
+                }
+                Console.WriteLine("\n");
+            }
+            return;
+        }
+
+        private static void KalkulatorNiezabezpieczonyPrzedWpisaniemLitery()
+        {
+            //Zadeklaruj zmienne, a następnie zainicjuj do zera.
             double num1 = 0;
             double num2 = 0;
 
@@ -36,13 +111,13 @@ namespace Calculator
             switch (Console.ReadLine())
             {
                 case "a":
-                    Console.WriteLine($"Twoje równanie: {num1} + {num2} = "+(num1+num2));
+                    Console.WriteLine($"Twoje równanie: {num1} + {num2} = " + (num1 + num2));
                     break;
                 case "s":
-                    Console.WriteLine($"Twoje równanie: {num1} - {num2} = "+( num1 - num2));
+                    Console.WriteLine($"Twoje równanie: {num1} - {num2} = " + (num1 - num2));
                     break;
                 case "m":
-                    Console.WriteLine($"Twoje równanie: {num1} * {num2} = "+(num1 * num2));
+                    Console.WriteLine($"Twoje równanie: {num1} * {num2} = " + (num1 * num2));
                     break;
                 case "d":
                     // Wprowadz drógą liczbę inną niż 0
@@ -51,7 +126,7 @@ namespace Calculator
                         Console.WriteLine("Liczba nie może być 0, wpisz inną liczbę:  ");
                         num2 = Convert.ToInt32(Console.ReadLine());
                     }
-                    Console.WriteLine($"Twoje równanie: {num1} / {num2} = "+(num1/num2));
+                    Console.WriteLine($"Twoje równanie: {num1} / {num2} = " + (num1 / num2));
                     break;
             }
             //Zamknięcie Kalkulatora
